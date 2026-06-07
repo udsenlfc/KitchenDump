@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>KitchenDump</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Navigation bar -->
+  <div class="header">
+    <div class="header-top">
+        <h1 class="site-title">KitchenDump</h1>
+        <div class="nav-buttons">
+            <a href="/storage"><button class="btn-nav">My Kitchen</button></a>
+            <a href="/favorites"><button class="btn-nav">My Favorites</button></a>
+        </div>
+    </div>
+    <!-- Seacrh bar -->
+    <form method="POST" class="search-form">
+        <input type="text" name="ingredients" 
+               placeholder="chicken, garlic, onion" class="search-input">
+        <button type="submit" name="action" value="ingredient" class="btn-primary">Find recipes</button>
+        <button type="submit" name="action" value="kitchen" class="btn-secondary">Use kitchen</button>
+    </form>
+  </div>
+
+    <!-- Recipe results -->
+    {% set results = results_kitchen if results_kitchen else results_ingredient %}
+
+    {% for r in results %}
+    <div class="recipe-card">
+        <h3><a href="/recipe/{{ r.recipe_id }}">{{ r.name }}</a></h3>
+        <p>{{ r.coverage_pct }}% covered — missing {{ r.missing_count }} ingredient(s)</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

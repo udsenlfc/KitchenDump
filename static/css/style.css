@@ -1,0 +1,503 @@
+/* ============================================================
+   KITCHENDUMP — STYLESHEET
+   ============================================================
+   1. Variables & Reset
+   2. Typography & Fonts
+   3. Layout & Body
+   4. Navbar
+   5. Header & Site Title
+   6. Search
+   7. Buttons
+   8. Recipe Cards
+   9. Favorites
+   10. Kitchen (Storage)
+   11. Autocomplete
+   12. Icons (Heart, Close) */
+
+
+/* 1. VARIABLES & RESET */
+
+:root {
+    --color-bg:        #FDFAF5;
+    --color-primary:   #2D6A4F;
+    --color-secondary: #74C69D;
+    --color-accent:    #D4845A;
+    --color-text:      #1B1B1B;
+    --color-muted:     #6B7280;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+/* 2. TYPOGRAPHY & FONTS */
+
+.site-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-primary);
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.recipe-title {
+    font-family: 'Caveat Brush', cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-primary);
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.recipe-description {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    color: var(--color-accent);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+/* 3. NAVBAR */
+
+.navbar body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar h2, p {
+    margin: 10px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--color-primary);
+}
+
+.navbar ul li {
+    float: right;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 26px;
+    text-decoration: none;
+    margin-top: 0.5rem;
+}
+
+.navbar ul li a:hover {
+    background-color: var(--color-secondary);
+}
+
+.navbar-font {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-bg);
+    font-size: 1.25rem;
+    margin: 0;
+    float: left;
+}
+
+.navbar-font:hover {
+    background-color: var(--color-primary);
+}
+
+
+/* 4. HEADER & SITE TITLE */
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.nav-buttons-right {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.1rem;
+    float: right;
+}
+
+
+/* 5. SEARCH */
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.search-input {
+    padding: 14px 28px;
+    border: 1px solid var(--color-muted);
+    border-radius: 8px;
+    font-size: 1.25rem;
+    width: 95%;
+    flex: 1;
+}
+
+
+/* 6. BUTTONS */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+.btn-primary,
+.btn-secondary,
+.btn-nav {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.btn-nav {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-nav:hover {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.form-select {
+    padding: 12px 12px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    height: 100%;
+}
+
+/* Button generator base styles */
+.html_button {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: flex-start;
+}
+
+.btn-left  { justify-content: flex-start; }
+.btn-right { justify-content: flex-end; }
+.btn-center { justify-content: center; }
+
+.btn-fill        { display: block; }
+.btn-fill a      { display: block; text-align: center; }
+.btn-fill button { display: block; width: 100%; text-align: center; }
+.btn-fill label  { display: block; text-align: center; }
+
+.btn {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font: inherit;
+    font-size: inherit;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn:hover { cursor: pointer; }
+
+.x-small { font-size: 0.5rem; }
+.small   { font-size: 0.8rem; }
+.medium  { font-size: 1rem; }
+.large   { font-size: 1.75rem; }
+.x-large { font-size: 1.5rem; }
+
+
+/* 7. RECIPE CARDS */
+
+.recipe-card {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+.recipe-card h3 a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.recipe-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.recipe-card p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+
+/* 8. FAVORITES */
+
+.box {
+    background-color: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    padding-left: 0px;
+    border: 1px solid #e5e7eb;
+}
+
+.fav-card {
+    padding: 0.02px;
+}
+
+.fav-card h3 a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.fav-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.fav-card p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+
+/* 9. KITCHEN (STORAGE) */
+
+.kitchen-grid {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.kitchen-section {
+    flex: 1;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    color: var(--color-primary);
+}
+
+.pantry-description {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--color-primary);
+    
+}
+
+.pantry-item:hover .pantry-description {
+    opacity: 1;
+    font-size: medium;
+}
+
+.fridge-description {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--color-primary);
+    
+}
+
+.fridge-item:hover .fridge-description {
+    opacity: 1;
+    font-size: medium;
+}
+
+/* 10. AUTOCOMPLETE */
+
+#suggestions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    position: absolute;
+    width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#suggestions li {
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    border-bottom: 1px solid #f3f4f6;
+}
+
+#suggestions li:last-child {
+    border-bottom: none;
+}
+
+#suggestions li:hover {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+}
+
+#suggestions:empty {
+    display: none;
+}
+
+
+/* 11. ICONS */
+
+/* Icon positioning */
+.icon-before::before {
+    margin-right: 0em;
+    margin-top: 1.5em;
+    padding: 0.7em 1.03em;
+    background-color: currentColor;
+    content: "";
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    fill: currentColor;
+}
+
+.icon-after::after {
+    margin-left: 0.5em;
+    padding: 0.7em 1.03em;
+    background-color: currentColor;
+    content: "";
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    fill: currentColor;
+}
+
+/* Close icon */
+.majesticons--close {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 12L7 7m5 5l5 5m-5-5l5-5m-5 5l-5 5'/%3E%3C/svg%3E");
+}
+
+.majesticons--close:hover {
+    border: 2px solid var(--color-secondary);
+    border-radius: 6.5px;
+    background-color: var(--color-secondary);
+}
+
+/* Heart icon — base */
+.heart::after,
+.heart::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-heart'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-heart'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Heart toggle — empty (not favorited) */
+.heart-on-off input[type="checkbox"]+label.heart-toggle::after,
+.heart-on-off input[type="checkbox"]+label.heart-toggle::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='auto' height='auto' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-heart'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='auto' height='auto' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-heart'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Heart toggle — filled (favorited) */
+.heart-on-off input[type="checkbox"]:checked+label.heart-toggle::after,
+.heart-on-off input[type="checkbox"]:checked+label.heart-toggle::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.4.1  SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 24 24' style='enable-background:new 0 0 24 24%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st0%7Bstroke:%23000000%3Bstroke-width:2%3Bstroke-linecap:round%3Bstroke-linejoin:round%3B%7D%3C/style%3E%3Cpath class='st0' d='M20.8 4.6c-2.1-2.1-5.6-2.1-7.8 0c0 0 0 0 0 0L12 5.7l-1.1-1.1c-2.1-2.1-5.6-2.1-7.8 0s-2.1 5.6 0 7.8l1.1 1.1l7.8 7.8l7.8-7.8l1.1-1.1C23 10.2 23 6.8 20.8 4.6C20.8 4.6 20.8 4.6 20.8 4.6z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.4.1  SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 24 24' style='enable-background:new 0 0 24 24%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st0%7Bstroke:%23000000%3Bstroke-width:2%3Bstroke-linecap:round%3Bstroke-linejoin:round%3B%7D%3C/style%3E%3Cpath class='st0' d='M20.8 4.6c-2.1-2.1-5.6-2.1-7.8 0c0 0 0 0 0 0L12 5.7l-1.1-1.1c-2.1-2.1-5.6-2.1-7.8 0s-2.1 5.6 0 7.8l1.1 1.1l7.8 7.8l7.8-7.8l1.1-1.1C23 10.2 23 6.8 20.8 4.6C20.8 4.6 20.8 4.6 20.8 4.6z'/%3E%3C/svg%3E");
+}
+
+/* Heart button — Flask-controlled state */
+button.heart-toggle.checked::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='currentColor' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+button.heart-toggle:not(.checked)::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'%3E%3C/path%3E%3C/svg%3E");
+}

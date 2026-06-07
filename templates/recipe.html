@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8"><title>{{ recipe.name }}</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <!-- Navigation bar -->
+  <header>
+          <nav class="navbar">    
+                <ul>
+                    <li style="float: left;" class="navbar-font"><a href="/">KitchenDump</a></li>
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/storage">Kitchen</a></li>
+                    <li><a href="/favorites">Favorites</a></li>
+                </ul>
+          </nav> 
+    </header>
+
+<!-- Delete favorite heart -->
+<div style="display: flex; align-items: center; gap: 2px;">
+<h1 class="recipe-title" style="font-size: 4rem;">{{ recipe.name }}</h1>
+    {% if is_favorite %}
+      <form method="POST" style="display:inline">
+        <input type="hidden" name="action" value="delete">
+        <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}">
+        <button type="submit" class="btn customButton large icon-before heart-toggle checked"></button>
+      </form>
+<!-- Add favorite heart -->
+    {% else %}
+      <form method="POST">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="recipe_id" value="{{ recipe.recipe_id }}">
+        <button type="submit" class="btn customButton large icon-before heart-toggle"></button>
+      </form>
+    {% endif %}
+</div>
+
+  <!-- Recipe details -->
+  <p class="recipe-description">
+    {% if recipe.cooking_time %}{{ recipe.cooking_time }} min{% endif %}
+    {% if recipe.cooking_time and recipe.servings %}&nbsp;|&nbsp;{% endif %}
+    {% if recipe.servings %}{{ recipe.servings }} portions{% endif %}
+  </p>
+
+  <p class="recipe-description">{{ recipe.description }}</p>
+
+  <h2 class="recipe-title">Ingredients</h2>
+  <ul class="recipe-description">
+    {% for i in ingredients %}
+      <li>{{ i.raw }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="recipe-title">Instructions</h2>
+  {% if recipe.instructions %}
+    <ol class="recipe-description">
+      {% for step in recipe.instructions %}
+        <li>{{ step }}</li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+
+    <h2 class="recipe-title">Tags</h2>
+  {% for t in tags %}
+    <span class="recipe-description">{{ t.name }}, </span>
+  {% endfor %}
+
+</body>
+</html>

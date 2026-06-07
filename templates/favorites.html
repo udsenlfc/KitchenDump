@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>KitchenDump</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header>
+          <nav class="navbar">    
+                <ul>
+                    <li style="float: left;" class="navbar-font"><a href="/">KitchenDump</a></li>
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/storage">Kitchen</a></li>
+                    <li><a href="/favorites">Favorites</a></li>
+                </ul>
+          </nav> 
+    </header>
+
+    <h1 class="site-title">Favorites</h1>
+    
+    <!-- List of favorites -->
+    <h3 class="description">Here is a list of your favorite recipes</h2>
+    <div class="box">
+            {% if favorites %}
+                <ul>
+                {% for item in favorites %}
+                    <li>
+                        <div class="fav-card">
+                            <h3><a href="/recipe/{{ item.recipe_id }}">{{ item.name }}</a>
+                            <form method="POST" style="display:inline">
+                                <input type="hidden" name="action" value="delete">
+                                <input type="hidden" name="recipe_id" value="{{ item.recipe_id }}">
+                                <button type="submit" class="majesticons--close"></button></form></h3>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No favorites yet.</p>
+            {% endif %}
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>My Kitchen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+          <nav class="navbar">    
+                <ul>
+                    <li style="float: left;" class="navbar-font"><a href="/">KitchenDump</a></li>
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/storage">Kitchen</a></li>
+                    <li><a href="/favorites">Favorites</a></li>
+                </ul>
+          </nav> 
+    </header>
+    <div class="header">
+      <h1 class="site-title">My Kitchen</h1>
+    </div>
+
+  <!-- Add ingredient -->
+  <form method="POST" class="search-form">
+      <input type="hidden" name="action" value="add">
+      <div style="position: relative; flex: 1;">
+          <input type="text" id="ingredient-input" name="ingredient_query" 
+                placeholder="fx garlic" class="search-input" autocomplete="off">
+          <ul id="suggestions"></ul>
+      </div>
+      <select name="category" class="form-select">
+          <option value="pantry">Pantry</option>
+          <option value="fridge">Fridge</option>
+      </select>
+      <button type="submit" class="btn-primary">Add ingredient</button>
+  </form>
+
+  <div class="kitchen-grid">
+      <!-- Pantry -->
+      <div class="kitchen-section">
+        <span class="pantry-item">
+            <h3>Pantry
+            <span class="pantry-description"> - This is for shelf-stable items like spices and oils</span></h3>
+        </span>
+          {% if pantry %}
+          <ul>
+              {% for item in pantry %}
+              <li>
+                  {{ item.name }}
+                  <form method="POST" style="display:inline">
+                      <input type="hidden" name="action" value="remove">
+                      <input type="hidden" name="ingredient_id" value="{{ item.ingredient_id }}">
+                      <input type="hidden" name="category" value="pantry">
+                      <button type="submit" class="majesticons--close"></button></form></h3>
+                  </form>
+              </li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No ingredients in pantry.</p>
+          {% endif %}
+      </div>
+
+      <!-- Fridge -->
+      <div class="kitchen-section">
+        <span class="fridge-item">
+            <h3>Fridge
+            <span class="fridge-description"> - This is for perishables like milk and bread</span></h3>
+        </span>
+          {% if fridge %}
+          <ul>
+              {% for item in fridge %}
+              <li>
+                  {{ item.name }}
+                  <form method="POST" style="display:inline">
+                      <input type="hidden" name="action" value="remove">
+                      <input type="hidden" name="ingredient_id" value="{{ item.ingredient_id }}">
+                      <input type="hidden" name="category" value="fridge">
+                      <button type="submit" class="majesticons--close"></button></form></h3>
+                  </form>
+              </li>
+              {% endfor %}
+          </ul>
+          {% else %}
+          <p>No ingredients in fridge.</p>
+          {% endif %}
+      </div>
+  </div>
+  
+
+  <!-- Autocomplete -->
+  <script>
+  const input = document.getElementById("ingredient-input");
+  const suggestionBox = document.getElementById("suggestions");
+
+  input.addEventListener("input", async function() {
+      const q = this.value.trim();
+      if (q.length < 2) {
+          suggestionBox.innerHTML = "";
+          return;
+      }
+      const response = await fetch(`/autocomplete?q=${q}`);
+      const suggestions = await response.json();
+      
+      suggestionBox.innerHTML = suggestions
+          .map(s => `<li onclick="selectIngredient('${s}')">${s}</li>`)
+          .join("");
+  });
+
+  function selectIngredient(name) {
+      input.value = name;
+      suggestionBox.innerHTML = "";
+  }
+  </script>
+</body>
+</html>
