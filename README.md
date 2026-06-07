@@ -1,6 +1,6 @@
 # KitchenDump
 
-KitchenDump is a web application that helps you find recipes based on the ingredients you already have at home. Instead of searching for a specific recipe, you tell KitchenDump what's in your fridge and pantry - and it returns recipes ranked by how many of the required ingredients you already have, minimizing what you need to buy.
+KitchenDump is a web application that helps you find recipes based on the ingredients you already have at home. Instead of searching for a specific recipe, you tell KitchenDump what's in your fridge and pantry - and it returns recipes ranked by how much of the recipe is already covered, minimizing what you need to buy.
 
 ## Stack
 
@@ -65,7 +65,7 @@ The database consists of 6 tables derived from the ER diagram:
 - `storage`: User's saved pantry and fridge ingredients
 - `favorites`: User's saved favorite recipes
 
-The dataset is sourced from Kaggle: https://www.kaggle.com/datasets/seungyeonhan1/recipe-dataset-with-images-tags-and-ratings/data. It contains ~21K recipes with images, however for the use case and due to thehuge sizing, the images were cut, as well as a random set of 1000 recipes were picked from the set.
+The dataset is sourced from Kaggle: https://www.kaggle.com/datasets/seungyeonhan1/recipe-dataset-with-images-tags-and-ratings/data. It contains ~21K recipes with images, however for the use case and due to the huge sizing, the images were cut, as well as a random set of 1000 recipes were picked from the set.
 
 The raw dataset stores ingredients as unstructured strings such as "1 1/2 cups low-sodium chicken broth". To structure these into separate fields (quantity, unit, name) as well as the original "raw" string for display usage, the Python library `ingredient-parser-nlp` was used during dataset preparation. This library applies a trained NLP model to parse ingredient strings into structured components. The parsed output forms the basis of the `recipe_ingredients` table schema.
 
@@ -93,7 +93,7 @@ The original dataset stores ingredients as formatted strings such as "1 1/2 cups
 Included to support a potential future feature where the user can record how much of an ingredient they have. This would enable more precise matching — for example, filtering out recipes that require more of an ingredient than the user currently has. In the current version, only the ingredient name is used for search.
 
 **`category` in `storage`**:
-The `category` field allows users to organise ingredients in My Kitchen into two groups: Pantry and Fridge. The original intention was for this distinction to reflect how frequently an ingredient needs replenishing - shelf-stable items like spices and oils would belong in Pantry, while perishables like milk and bread would go in Fridge. This separation could then be used to surface more relevant search results, for example by weighting fridge ingredients higher on the assumption that the user is more actively trying to use them before they expire. Furthermor, it could be relevant to "use" a recipe, and the Fridge ingredients would get "used", while Pantry ingredients would remain. However, implementing this logic was considered out of scope for the current version of the project.
+The `category` field allows users to organise ingredients in My Kitchen into two groups: Pantry and Fridge. The original intention was for this distinction to reflect how frequently an ingredient needs replenishing - shelf-stable items like spices and oils would belong in Pantry, while perishables like milk and bread would go in Fridge. This separation could then be used to surface more relevant search results, for example by weighting fridge ingredients higher on the assumption that the user is more actively trying to use them before they expire. Furthermore, it could be relevant to "use" a recipe, and the Fridge ingredients would get "used", while Pantry ingredients would remain. However, implementing this logic was considered out of scope for the current version of the project.
 
 **`servings` in `recipes`**:
 Not used in the current search or display logic beyond the recipe detail page, but included as it is a natural attribute of a recipe and would be the foundation for a future portion-scaling feature.
@@ -102,7 +102,7 @@ Not used in the current search or display logic beyond the recipe detail page, b
 Rather than normalising instructions into a separate table (e.g. a `steps` table with `recipe_id`, `step_number`, `text`), instructions are stored as a JSON array in the `recipes` table. This is justified because instructions are always retrieved and displayed as a complete ordered list — never queried individually — making a JSON column a simpler choice for this use case.
 
 **`Tags`**:
-Initially, the idea was for the user to be able to sort recipes by tags as well (e.g. European dishes, Desserts, Dishes <15 mins). However in the current version, the tags only figure as a detail about each dish when viewing a speicific recipe. 
+Initially, the idea was for the user to be able to sort recipes by tags as well (e.g. European dishes, Desserts, Dishes <15 mins). However in the current version, the tags only figure as a detail about each dish when viewing a specific recipe. 
 
 ## AI Declaration
 An AI Declaration can be found in the repository.
